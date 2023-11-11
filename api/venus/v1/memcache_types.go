@@ -28,20 +28,28 @@ type MemcacheSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of Memcache. Edit memcache_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Replicas is an example field of Memcache. Edit memcache_types.go to remove/update
+	Replicas int32  `json:"replicas"`
+	Image    string `json:"image"`
 }
 
 // MemcacheStatus defines the observed state of Memcache
 type MemcacheStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	State   string `json:"state"`
+	Message string `json:"message,omitempty"`
 }
 
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
+//+kubebuilder:resource:scope=Namespaced,shortName=mc
+//+kubebuilder:printcolumn:name=Replicas,type=string,JSONPath=".spec.replicas"
+//+kubebuilder:printcolumn:name=Image,type=string,JSONPath=".spec.image"
+//+kubebuilder:printcolumn:name=State,type=string,JSONPath=".status.state"
+//+kubebuilder:printcolumn:name="Age",type=date,JSONPath=.metadata.creationTimestamp
 
 // Memcache is the Schema for the memcaches API
 type Memcache struct {

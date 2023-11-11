@@ -28,20 +28,28 @@ type RedisSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of Redis. Edit redis_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Replicas is an example field of Redis. Edit redis_types.go to remove/update
+	Replicas int32  `json:"replicas"`
+	Image    string `json:"image"`
 }
 
 // RedisStatus defines the observed state of Redis
 type RedisStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	State   string `json:"state"`
+	Message string `json:"message,omitempty"`
 }
 
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
+//+kubebuilder:resource:scope=Namespaced,shortName=rds
+//+kubebuilder:printcolumn:name=Replicas,type=string,JSONPath=".spec.replicas"
+//+kubebuilder:printcolumn:name=Image,type=string,JSONPath=".spec.image"
+//+kubebuilder:printcolumn:name=State,type=string,JSONPath=".status.state"
+//+kubebuilder:printcolumn:name="Age",type=date,JSONPath=.metadata.creationTimestamp
 
 // Redis is the Schema for the redis API
 type Redis struct {
