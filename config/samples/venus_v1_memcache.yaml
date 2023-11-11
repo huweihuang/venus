@@ -1,0 +1,12 @@
+apiVersion: venus.venus.io/v1
+kind: Memcache
+metadata:
+  labels:
+    app.kubernetes.io/name: memcache
+    app.kubernetes.io/instance: memcache-sample
+    app.kubernetes.io/part-of: venus
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: venus
+  name: memcache-sample
+spec:
+  # TODO(user): Add fields here

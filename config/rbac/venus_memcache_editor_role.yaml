@@ -1,0 +1,31 @@
+# permissions for end users to edit memcaches.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: memcache-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: venus
+    app.kubernetes.io/part-of: venus
+    app.kubernetes.io/managed-by: kustomize
+  name: memcache-editor-role
+rules:
+- apiGroups:
+  - venus.venus.io
+  resources:
+  - memcaches
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - venus.venus.io
+  resources:
+  - memcaches/status
+  verbs:
+  - get
