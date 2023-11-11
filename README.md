@@ -1,113 +1,91 @@
 # venus
-Venus is a k8s operator development framework
+// TODO(user): Add simple overview of use/purpose
 
-# Usage
+## Description
+// TODO(user): An in-depth paragraph about your project and overview of use
 
-## 1. clone repo
+## Getting Started
 
-```shell
-git clone https://github.com/huweihuang/venus.git
+### Prerequisites
+- go version v1.20.0+
+- docker version 17.03+.
+- kubectl version v1.11.3+.
+- Access to a Kubernetes v1.11.3+ cluster.
+
+### To Deploy on the cluster
+**Build and push your image to the location specified by `IMG`:**
+
+```sh
+make docker-build docker-push IMG=<some-registry>/venus:tag
 ```
 
-## 2. update apis type file
+**NOTE:** This image ought to be published in the personal registry you specified. 
+And it is required to have access to pull the image from the working environment. 
+Make sure you have the proper permission to the registry if the above commands don’t work.
 
-Modify the directory name, usually using your project name.
+**Install the CRDs into the cluster:**
 
-```shell
-pkg/apis
-└── venus  # update the dir
-    └── v1
-        ├── doc.go
-        ├── memcache_types.go
-        ├── redis_types.go
-        ├── register.go
-        └── zz_generated.deepcopy.go  # The file is automatically generated and do not edit
+```sh
+make install
 ```
 
-Rename the name of the CRD and add parameters for spec and status.
+**Deploy the Manager to the cluster with the image specified by `IMG`:**
 
-You can add multiple types of CRDs.
-
-```go
-// RedisSpec is the spec for a Redis resource
-type RedisSpec struct {
-	DeploymentName string `json:"deploymentName"`
-	Replicas       *int32 `json:"replicas"`
-}
-
-// RedisStatus is the status for a Redis resource
-type RedisStatus struct {
-	AvailableReplicas int32 `json:"availableReplicas"`
-}
+```sh
+make deploy IMG=<some-registry>/venus:tag
 ```
 
-## 3. run codegen script
+> **NOTE**: If you encounter RBAC errors, you may need to grant yourself cluster-admin 
+privileges or be logged in as admin.
 
-edit update-codegen.sh and modify parameter `PKG`, `GROUP_VERSION`.
+**Create instances of your solution**
+You can apply the samples (examples) from the config/sample:
 
-```shell
-PKG="github.com/huweihuang/venus"
-GROUP_VERSION='venus:v1'
-
-...
+```sh
+kubectl apply -k config/samples/
 ```
 
-run make codegen
+>**NOTE**: Ensure that the samples has default values to test it out.
 
-```shell
-go mod tidy
-make codegen
+### To Uninstall
+**Delete the instances (CRs) from the cluster:**
+
+```sh
+kubectl delete -k config/samples/
 ```
 
-It will automatically generate the following code.
+**Delete the APIs(CRDs) from the cluster:**
 
-- clientset
-- informers
-- listers
-
-```shell
-pkg/generated
-├── clientset
-│ └── versioned
-│     ├── clientset.go
-│     ├── doc.go
-│     ├── fake
-│     │ ├── clientset_generated.go
-│     │ ├── doc.go
-│     │ └── register.go
-│     ├── scheme
-│     │ ├── doc.go
-│     │ └── register.go
-│     └── typed
-│         └── venus
-│             └── v1
-│                 ├── doc.go
-│                 ├── fake
-│                 │ ├── doc.go
-│                 │ ├── fake_memcache.go
-│                 │ ├── fake_redis.go
-│                 │ └── fake_venus_client.go
-│                 ├── generated_expansion.go
-│                 ├── memcache.go
-│                 ├── redis.go
-│                 └── venus_client.go
-├── informers
-│ └── externalversions
-│     ├── factory.go
-│     ├── generic.go
-│     ├── internalinterfaces
-│     │ └── factory_interfaces.go
-│     └── venus
-│         ├── interface.go
-│         └── v1
-│             ├── interface.go
-│             ├── memcache.go
-│             └── redis.go
-└── listers
-    └── venus
-        └── v1
-            ├── expansion_generated.go
-            ├── memcache.go
-            └── redis.go
+```sh
+make uninstall
 ```
+
+**UnDeploy the controller from the cluster:**
+
+```sh
+make undeploy
+```
+
+## Contributing
+// TODO(user): Add detailed information on how you would like others to contribute to this project
+
+**NOTE:** Run `make --help` for more information on all potential `make` targets
+
+More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
+
+## License
+
+Copyright 2023.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
