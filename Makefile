@@ -1,3 +1,10 @@
+# Define main package name
+PKG = github.com/huweihuang/venus
+# Define group/version to generate
+GROUPVERSION = venus:v1
+# Define the stable version of the Kubernetes API we should build for.
+# Changing this may produce slightly different generated client code.
+KUBE_VERSION = "v0.23.0"
 
 # Image URL to use all building/pushing image targets
 IMG ?= controller:latest
@@ -177,3 +184,17 @@ $(CONTROLLER_GEN): $(LOCALBIN)
 envtest: $(ENVTEST) ## Download envtest-setup locally if necessary.
 $(ENVTEST): $(LOCALBIN)
 	test -s $(LOCALBIN)/setup-envtest || GOBIN=$(LOCALBIN) go install sigs.k8s.io/controller-runtime/tools/setup-envtest@latest
+
+.PHONY: generate-groups
+generate-groups: generate-groups.sh ## Generate code such as client, lister, informers.
+	$(GENERATE_GROUPS) "deepcopy,client" "$(PKG)/generated" "$(PKG)/api" $(GROUPVERSION) --go-header-file="hack/boilerplate.go.txt"
+
+# generate-groups.sh will download generate-groups.sh which is used for generating client libraries.
+generate-groups.sh:
+	@{ \
+	set -e ;\
+	cd /tmp ;\
+	rm -rf code-generator ;\
+	git clone https://github.com/kubernetes/code-generator.git --branch $(KUBE_VERSION) 2>/dev/null;\
+	}
+GENERATE_GROUPS=/tmp/code-generator/generate-groups.sh
