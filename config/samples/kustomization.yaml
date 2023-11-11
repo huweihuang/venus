@@ -1,0 +1,5 @@
+## Append samples of your project ##
+resources:
+- venus_v1_redis.yaml
+- venus_v1_memcache.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

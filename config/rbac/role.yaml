@@ -1,0 +1,58 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - venus.huweihuang.com
+  resources:
+  - memcaches
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - venus.huweihuang.com
+  resources:
+  - memcaches/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - venus.huweihuang.com
+  resources:
+  - memcaches/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - venus.huweihuang.com
+  resources:
+  - redis
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - venus.huweihuang.com
+  resources:
+  - redis/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - venus.huweihuang.com
+  resources:
+  - redis/status
+  verbs:
+  - get
+  - patch
+  - update
