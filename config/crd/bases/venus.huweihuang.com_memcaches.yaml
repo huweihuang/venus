@@ -11,10 +11,25 @@ spec:
     kind: Memcache
     listKind: MemcacheList
     plural: memcaches
+    shortNames:
+    - mc
     singular: memcache
   scope: Namespaced
   versions:
-  - name: v1
+  - additionalPrinterColumns:
+    - jsonPath: .spec.replicas
+      name: Replicas
+      type: string
+    - jsonPath: .spec.image
+      name: Image
+      type: string
+    - jsonPath: .status.state
+      name: State
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1
     schema:
       openAPIV3Schema:
         description: Memcache is the Schema for the memcaches API
@@ -34,13 +49,29 @@ spec:
           spec:
             description: MemcacheSpec defines the desired state of Memcache
             properties:
-              foo:
-                description: Foo is an example field of Memcache. Edit memcache_types.go
-                  to remove/update
+              image:
                 type: string
+              replicas:
+                description: Replicas is an example field of Memcache. Edit memcache_types.go
+                  to remove/update
+                format: int32
+                type: integer
+            required:
+            - image
+            - replicas
             type: object
           status:
             description: MemcacheStatus defines the observed state of Memcache
+            properties:
+              message:
+                type: string
+              state:
+                description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                  of cluster Important: Run "make" to regenerate code after modifying
+                  this file'
+                type: string
+            required:
+            - state
             type: object
         type: object
     served: true
