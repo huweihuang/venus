@@ -33,7 +33,7 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
 	venusv1 "github.com/huweihuang/venus/api/venus/v1"
-	venuscontroller "github.com/huweihuang/venus/internal/controller/venus"
+	venuscontroller "github.com/huweihuang/venus/pkg/controller/venus"
 	//+kubebuilder:scaffold:imports
 )
 
