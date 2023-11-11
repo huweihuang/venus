@@ -12,7 +12,7 @@ metadata:
   name: memcache-viewer-role
 rules:
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - memcaches
   verbs:
@@ -20,7 +20,7 @@ rules:
   - list
   - watch
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - memcaches/status
   verbs:

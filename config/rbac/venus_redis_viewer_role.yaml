@@ -12,7 +12,7 @@ metadata:
   name: redis-viewer-role
 rules:
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - redis
   verbs:
@@ -20,7 +20,7 @@ rules:
   - list
   - watch
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - redis/status
   verbs:

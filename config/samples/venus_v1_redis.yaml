@@ -1,4 +1,4 @@
-apiVersion: venus.venus.io/v1
+apiVersion: venus.huweihuang.com/v1
 kind: Redis
 metadata:
   labels:

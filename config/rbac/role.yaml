@@ -5,7 +5,7 @@ metadata:
   name: manager-role
 rules:
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - memcaches
   verbs:
@@ -17,13 +17,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - memcaches/finalizers
   verbs:
   - update
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - memcaches/status
   verbs:
@@ -31,7 +31,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - redis
   verbs:
@@ -43,13 +43,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - redis/finalizers
   verbs:
   - update
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - redis/status
   verbs:

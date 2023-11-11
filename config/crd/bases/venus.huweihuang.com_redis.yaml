@@ -4,20 +4,20 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: memcaches.venus.venus.io
+  name: redis.venus.huweihuang.com
 spec:
-  group: venus.venus.io
+  group: venus.huweihuang.com
   names:
-    kind: Memcache
-    listKind: MemcacheList
-    plural: memcaches
-    singular: memcache
+    kind: Redis
+    listKind: RedisList
+    plural: redis
+    singular: redis
   scope: Namespaced
   versions:
   - name: v1
     schema:
       openAPIV3Schema:
-        description: Memcache is the Schema for the memcaches API
+        description: Redis is the Schema for the redis API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -32,15 +32,15 @@ spec:
           metadata:
             type: object
           spec:
-            description: MemcacheSpec defines the desired state of Memcache
+            description: RedisSpec defines the desired state of Redis
             properties:
               foo:
-                description: Foo is an example field of Memcache. Edit memcache_types.go
+                description: Foo is an example field of Redis. Edit redis_types.go
                   to remove/update
                 type: string
             type: object
           status:
-            description: MemcacheStatus defines the observed state of Memcache
+            description: RedisStatus defines the observed state of Redis
             type: object
         type: object
     served: true

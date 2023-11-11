@@ -12,7 +12,7 @@ metadata:
   name: redis-editor-role
 rules:
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - redis
   verbs:
@@ -24,7 +24,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - redis/status
   verbs:

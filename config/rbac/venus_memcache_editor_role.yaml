@@ -12,7 +12,7 @@ metadata:
   name: memcache-editor-role
 rules:
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - memcaches
   verbs:
@@ -24,7 +24,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - venus.venus.io
+  - venus.huweihuang.com
   resources:
   - memcaches/status
   verbs:

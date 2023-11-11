@@ -2,7 +2,7 @@
 # This file is used to track the info used to scaffold your project
 # and allow the plugins properly work.
 # More info: https://book.kubebuilder.io/reference/project-config.html
-domain: venus.io
+domain: huweihuang.com
 layout:
 - go.kubebuilder.io/v4
 multigroup: true
@@ -13,7 +13,7 @@ resources:
     crdVersion: v1
     namespaced: true
   controller: true
-  domain: venus.io
+  domain: huweihuang.com
   group: venus
   kind: Redis
   path: github.com/huweihuang/venus/api/venus/v1
@@ -22,7 +22,7 @@ resources:
     crdVersion: v1
     namespaced: true
   controller: true
-  domain: venus.io
+  domain: huweihuang.com
   group: venus
   kind: Memcache
   path: github.com/huweihuang/venus/api/venus/v1

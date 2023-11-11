@@ -33,9 +33,9 @@ type RedisReconciler struct {
 	Scheme *runtime.Scheme
 }
 
-//+kubebuilder:rbac:groups=venus.venus.io,resources=redis,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=venus.venus.io,resources=redis/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=venus.venus.io,resources=redis/finalizers,verbs=update
+//+kubebuilder:rbac:groups=venus.huweihuang.com,resources=redis,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=venus.huweihuang.com,resources=redis/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=venus.huweihuang.com,resources=redis/finalizers,verbs=update
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
