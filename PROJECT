@@ -8,4 +8,14 @@ layout:
 multigroup: true
 projectName: venus
 repo: github.com/huweihuang/venus
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: venus.io
+  group: venus
+  kind: Redis
+  path: github.com/huweihuang/venus/api/venus/v1
+  version: v1
 version: "3"
