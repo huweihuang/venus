@@ -1,8 +1,5 @@
-# venus
-// TODO(user): Add simple overview of use/purpose
-
-## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+# Description
+Venus is a k8s operator development framework
 
 ## Getting Started
 
