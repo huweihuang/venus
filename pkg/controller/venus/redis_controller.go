@@ -20,6 +20,7 @@ import (
 	"context"
 
 	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/client-go/util/retry"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
@@ -59,4 +60,17 @@ func (r *RedisReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&venusv1.Redis{}).
 		Complete(r)
+}
+
+// UpdateStatus updates Status with retry.RetryOnConflict
+// fix error: the object has been modified; please apply your changes to the latest version and try again
+func (r *RedisReconciler) UpdateStatus(ctx context.Context, req ctrl.Request, obj *venusv1.Redis) error {
+	status := obj.DeepCopy().Status
+	return retry.RetryOnConflict(retry.DefaultBackoff, func() (err error) {
+		if err := r.Get(ctx, req.NamespacedName, obj); err != nil {
+			return err
+		}
+		obj.Status = status
+		return r.Status().Update(ctx, obj)
+	})
 }
